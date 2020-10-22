@@ -37,8 +37,8 @@ pipeline {
                 IMAGE = 'cdrx/pyinstaller-linux:python2'
             }
             steps {
-                echo (path: env.BUILD_ID)
-		echo $(pwd)/sources
+                //echo (path: env.BUILD_ID)
+		echo '{$(pwd)/sources}'
                 dir(path: env.BUILD_ID) { 
                     unstash(name: 'compiled-results') 
                 //    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
