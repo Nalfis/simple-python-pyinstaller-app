@@ -37,13 +37,15 @@ pipeline {
                 IMAGE = 'cdrx/pyinstaller-linux:python2'
             }
             steps {
-                dir(path: env.BUILD_ID) { 
+                dir(path: env.BUILD_ID) {
+		echo "ramonita" 
                     // unstash(name: 'compiled-results') 
                     // sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
                 }
             }
             post {
                 success {
+		echo "paso de curso"
 		  // archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals" 
                    // sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
                 }
