@@ -40,7 +40,7 @@ pipeline {
                 dir(path: env.BUILD_ID) {
 		echo "stahing results and using pyinstaller to compile my application" 
                      unstash(name: 'compiled-results') 
-                     sh "docker run --rm -v (path: env.build_id):/src ${IMAGE} 'pyinstaller -F add2vals.py'" 
+                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
                 }
             }
             post {
