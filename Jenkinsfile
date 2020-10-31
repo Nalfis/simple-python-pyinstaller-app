@@ -33,12 +33,11 @@ pipeline {
         stage('Deliver') { 
             agent any
             environment {
-                echo $PWD
-                echo $WORKSPACE 
                 VOLUME = '$(pwd)/sources:/src'
                 IMAGE = 'cdrx/pyinstaller-linux:python2'
             }
             steps {
+                echo "{VOLUME}"
                 dir(path: env.BUILD_ID) {
 		echo "stahing results and using pyinstaller to compile my application" 
                      unstash(name: 'compiled-results') 
