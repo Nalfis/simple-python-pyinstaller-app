@@ -47,6 +47,9 @@ pipeline {
                     archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals" 
                     sh "docker run --rm -v /var/jenkins_home/workspace/simple-python/5/sources:/src ${IMAGE} 'rm -rf build dist'"
                 }
+                failure{
+                    writeln "it did not work"
+                }
             }
         }
     }
