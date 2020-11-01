@@ -2,7 +2,14 @@ pipeline {
     agent none
     stages {
         stage('Build') {
-            echo 'macagraniando'
+            agent {
+                docker {
+                    image 'python:2-alpine'
+                }
+            }
+            steps{
+                echo "que maldita vaina"
+            }
         }
     }
 }
