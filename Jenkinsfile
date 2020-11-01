@@ -8,7 +8,9 @@ pipeline {
                 }
             }
             steps{
-                echo "que maldita vaina"
+                echo "Compilando los dos programitas"
+                sh 'python -m py_compile sources/add2vals.py sources/calc.py'
+                stash(name: 'compiled-results', includes: 'sources/*.py*')
             }
         }
     }
