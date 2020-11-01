@@ -20,6 +20,7 @@ pipeline {
                 }
             }
             steps {
+                echo "usando pruebas para confirmar que la application sirve"
                 sh 'py.test --junit-xml test-reports/results.xml sources/test_calc.py'
             }
             post {
@@ -37,11 +38,13 @@ pipeline {
             steps{
                 dir(path: env.build_ID) {
                     unstash(name: 'compiled-results')
+                    echo "compilando..."
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'"
                 }
             }
             post {
                 success {
+                    echo "Limpiando el folder con la application empaquetada"
                     archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals"
                     sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
                 }
